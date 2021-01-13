@@ -1,9 +1,12 @@
+"""
+Test for MySQL connection
+"""
+
 import mysql.connector
 from mysql.connector import Error
 
 import time
 import argparse
-import pandas as pd
 from datetime import date
 
 def sql_query(query_string):

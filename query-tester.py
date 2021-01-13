@@ -6,6 +6,7 @@ import mysql.connector
 from mysql.connector import Error
 
 import time
+import pandas as pd
 import argparse
 from datetime import date
 

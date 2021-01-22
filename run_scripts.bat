@@ -1,2 +1,3 @@
-python query-tester.py presstitute
-python query-tester.py duterte
+python count-query.py marcosnotahero 2019
+python count-query.py tokhang 2020
+python count-query.py marcosnotahero 2020

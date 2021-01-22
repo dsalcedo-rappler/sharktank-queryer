@@ -30,6 +30,7 @@ def sql_query(query_string):
         if (connection.is_connected()):
             cursor.close()
             connection.close()
+        time.sleep(30.0)
         return records
 
 if __name__ == "__main__":

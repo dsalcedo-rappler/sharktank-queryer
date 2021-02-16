@@ -1,5 +1,5 @@
 """
-Queries messages from m_posts and posts containing a given keyword
+Queries messages from m_posts and posts containing a given keyword: media/journalist
 """
 from app_utils import sql_query, gen_dates
 from datetime import date
@@ -10,7 +10,7 @@ import argparse
 # parser.add_argument("keyword")
 # args = parser.parse_args()
 
-keyword = "presstitute" #args.keyword
+keyword = "media" #args.keyword
 
 db_client = pymongo.MongoClient("mongodb://localhost:27017/")
 db_mongo = db_client["sharktank"]
@@ -31,7 +31,7 @@ for day in dates:
         SELECT message,from_profile,id
         FROM posts
         WHERE created_date = '{day}'
-        AND message LIKE '%{keyword}%'
+        AND (message LIKE '%{keyword}%' OR message LIKE '%journalist%')
     """
     query_result = sql_query(sql_query_string,sleep=5.0)
     print("Queried ", keyword, " for ",day)
@@ -54,7 +54,7 @@ for day in mdates:
         SELECT message,from_profile,id
         FROM m_posts
         WHERE created_date = '{day}'
-        AND message LIKE '%{keyword}%'
+        AND (message LIKE '%{keyword}%' OR message LIKE '%journalist%')
     """
     query_result = sql_query(sql_query_string,sleep=5.0)
     print("Queried ", keyword, " for ",day)

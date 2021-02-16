@@ -5,7 +5,7 @@ Performs queries from mongodb then exports as csv
 import pymongo
 import pandas as pd
 
-keyword = "adik"
+keyword = "ressa"
 
 db_client = pymongo.MongoClient("mongodb://localhost:27017/")
 db_mongo = db_client["sharktank"]

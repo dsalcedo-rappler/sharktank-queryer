@@ -5,7 +5,6 @@ Test for MySQL connection
 import mysql.connector
 from mysql.connector import Error
 
-import time
 import pandas as pd
 import argparse
 from datetime import date
@@ -30,28 +29,14 @@ def sql_query(query_string):
         return records
 
 if __name__ == "__main__":
-    start_code = time.time()
+    sql_select_query = f"""
+        SELECT COUNT(DISTINCT id)
+        FROM m_profilelatest
+        WHERE void = 0
+        AND vanity_url NOT LIKE '%/'
+        AND vanity_url NOT LIKE '/group%'
+    """
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("keyword", 
-                        help="Keyword to be queried")
-    args = parser.parse_args()
+    query_result = sql_query(sql_select_query)
 
-    sdate = date(2018,8,1)
-    edate = date(2018,8,1)
-    dates0 = pd.date_range(sdate,edate,freq='d')
-    dates = list(dates0.strftime('%Y-%m-%d'))
-
-    result = []
-    for day in dates:
-        sql_select_query = f"""
-            SELECT COUNT(message)
-            FROM m_posts
-            WHERE created_date = '{day}'
-            AND message LIKE '%{args.keyword}%'
-        """
-
-        query_result = sql_query(sql_select_query)
-        result.append(query_result)
-
-    print(result)
+    print(query_result)

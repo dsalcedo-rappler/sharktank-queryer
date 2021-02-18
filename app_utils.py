@@ -8,7 +8,7 @@ def gen_dates(sdate,edate):
     dates = list(dates0.strftime('%Y-%m-%d'))
     return dates
 
-def sql_query(query_string,sleep=30.0):
+def sql_query(query_string,sleep=5.0):
     try:
         connection = mysql.connector.connect(
             host='localhost',

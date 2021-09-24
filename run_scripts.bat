@@ -1,1 +1,0 @@
-python message_query.py adik
